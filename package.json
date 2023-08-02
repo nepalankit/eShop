@@ -1,0 +1,23 @@
+{
+  "name": "eshop",
+  "version": "1.0.0",
+  "description": "Application on mern stack",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nepalankit/eShop.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nepalankit/eShop/issues"
+  },
+  "homepage": "https://github.com/nepalankit/eShop#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
