@@ -1,4 +1,5 @@
 const products = [
+  //aint using now from frontend
   {
     _id: "1",
     name: "Airpods Wireless Bluetooth Headphones",
