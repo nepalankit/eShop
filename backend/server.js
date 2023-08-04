@@ -10,6 +10,10 @@ const port = process.env.PORT || 5000;
 dotenv.config();
 connectDB(); // connect to MongoDB
 const app = express();
+
+//body parser middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); //get req,body data
 app.get("/", (req, res) => {
   res.send("API is running");
 });
