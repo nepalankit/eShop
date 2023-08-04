@@ -1,4 +1,5 @@
-import {useParams,Link} from "react-router-dom"
+import {useParams,useNavigate,Link} from "react-router-dom"
+import {useState  } from'react'
 import Loader from "../components/loader";
 import {
     Row,
@@ -9,13 +10,25 @@ import {
     Button,
     Form,
   } from 'react-bootstrap';
+  import { useDispatch } from "react-redux";
   import Rating from "../components/Rating";
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import Message from "../components/Message";
+import { addToCart } from "../slices/cartSlice";
 const ProductScreen = () => {
+
   
-    const {id:productId}=useParams()
+  const [qty,setQty]=useState(1)
+  
+  const {id:productId}=useParams()
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
   const {data:product,isLoading,error}=useGetProductDetailsQuery(productId)
+
+  const addToCartHandler=()=>{
+ dispatch(addToCart({...product,qty}))
+ navigate('/cart')
+  }
 
     
   return (
@@ -80,9 +93,10 @@ const ProductScreen = () => {
                     <Col>
                       <Form.Control
                         as="select"
-                      //   value={qty}
-                      //   onChange={(e) => setQty(e.target.value)}
+                        value={qty}
+                        onChange={(e) => setQty(Number(e.target.value))}
                       >
+                       {/* gives array of 0 to that countInStock */}
                         {[...Array(product.countInStock).keys()].map((x) => (
                           <option key={x + 1} value={x + 1}>
                             {x + 1}
@@ -95,7 +109,7 @@ const ProductScreen = () => {
               )}{" "}
               <ListGroup.Item>
                 <Button
-                  // onClick={addToCartHandler}
+                  onClick={addToCartHandler}
                   variant="dark"
                   className="btn-block "
                   type="button"
