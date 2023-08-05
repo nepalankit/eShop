@@ -9,12 +9,14 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import App from "./App";
+import PrivateRoute from "./components/PrivateRoute";
 import reportWebVitals from "./reportWebVitals";
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/productScreen";
 import CartScreen from "./screens/cartScreen";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/registerScreen";
+import PaymentScreen from "./screens/PaymentScreen";
 import { Provider } from "react-redux";
 import store from "./store";
 import ShippingScreen from "./screens/ShippingScreen";
@@ -26,7 +28,11 @@ const router = createBrowserRouter(
       <Route path="/cart" element={<CartScreen />} />
       <Route path="/login" element={<LoginScreen />} />
       <Route path="/register" element={<RegisterScreen />} />
-      <Route path="/shipping" element={<ShippingScreen />} />
+
+      <Route path="" element={<PrivateRoute />}>
+        <Route path="/shipping" element={<ShippingScreen />} />
+        <Route path="/payment" element={<PaymentScreen />} />
+      </Route>
     </Route>
   )
 );
