@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { updateCart } from "../utils/cartUtils";
 const initialState = localStorage.getItem("cart")
   ? JSON.parse(localStorage.getItem("cart"))
-  : { cartItems: [] };
+  : { cartItems: [], shippingAddress: {}, paymentMethod: "PayPal" };
 
 const cartSlice = createSlice({
   name: "cart",
@@ -28,9 +28,14 @@ const cartSlice = createSlice({
 
       return updateCart(state);
     },
+    saveShippingAddress: (state, action) => {
+      state.shippingAddress = action.payload;
+      return updateCart(state);
+    },
   },
 });
 //So even though we already exported the reducer to put that in the store JS file, any function we create,here we need to export as an action.
 
-export const { addToCart, removeFromCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, saveShippingAddress } =
+  cartSlice.actions;
 export default cartSlice.reducer;

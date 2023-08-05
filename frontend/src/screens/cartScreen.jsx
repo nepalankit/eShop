@@ -21,7 +21,7 @@ const CartScreen = () => {
         dispatch(removeFromCart(id))
     }
     const checkoutHandler=()=>{
-        navigate('/login? redirect =/shipping') //not loginin we redirected to logging else shipping
+        navigate('/login?redirect=/shipping') //not loginin we redirected to logging else shipping
     }
 
     return (
