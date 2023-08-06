@@ -36,6 +36,10 @@ const cartSlice = createSlice({
       state.paymentMethod = action.payload;
       return updateCart(state);
     },
+    clearCartItems: (state, action) => {
+      state.cartItems = [];
+      return updateCart(state);
+    },
   },
 });
 //So even though we already exported the reducer to put that in the store JS file, any function we create,here we need to export as an action.
@@ -45,5 +49,6 @@ export const {
   removeFromCart,
   saveShippingAddress,
   savePayementMethod,
+  clearCartItems,
 } = cartSlice.actions;
 export default cartSlice.reducer;
