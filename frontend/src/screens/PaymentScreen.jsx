@@ -13,18 +13,15 @@ const PaymentScreen = () => {
     const dispatch=useDispatch()
 
     const cart=useSelector((state)=>state.cart) 
-    const {ShippingAddress}=cart
+    const {shippingAddress}=cart
   
 
     useEffect(() =>{
-        if(!ShippingAddress)
+        if(!shippingAddress)
         {
 navigate('/shipping')
         }
-        else{
-
-        }
-    },[ShippingAddress,navigate])
+    },[shippingAddress,navigate])
 
 const submitHandler=(e) =>{
     e.preventDefault();

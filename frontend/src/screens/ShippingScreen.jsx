@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { saveShippingAddress } from '../slices/cartSlice';
 import {useSelector,useDispatch} from 'react-redux'
 import CheckoutSteps from '../components/CheckoutSteps';
+
 const ShippingScreen = () => {
   const cart=useSelector((state)=>state.cart) 
   const {ShippingAddress}=cart
@@ -66,7 +67,8 @@ const ShippingScreen = () => {
             onChange={(e) => setCountry(e.target.value)}
           />
         </Form.Group>
-        <Button type='submit' variant='dark' className='my-2'>
+        <Button type='submit' variant='dark' className='my-2'
+       >
           Continue
         </Button>
       </Form>
