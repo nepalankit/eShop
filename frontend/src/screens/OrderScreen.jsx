@@ -47,20 +47,36 @@ if(!errorPayPal && !loadingPayPal && paypal.clientId )
 }
 },[order,paypal,paypalDispatch,loadingPayPal,errorPayPal])
  
-function onApprove(data,actions){ //paypal button
-    return actions.order.capture().then(async function(details){
 
-        try{
-                await payOrder({orderId,details});
-                refetch(); //once paid refetch unpaid to paid
-            toast.success('Payment successful')
-            }
-        catch(err)
-        {
-            toast.error(err?.data?.message || err.message)
-        }
-    })
-}
+async function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      try {
+        await payOrder({ orderId, details });
+  
+        // Call the API to update the order status to "Paid"
+        await updateOrderStatus(orderId);
+  
+        refetch(); // Once paid, refetch to update the UI
+        toast.success('Payment successful');
+      } catch (err) {
+        toast.error(err?.data?.message || err.message);
+      }
+    });
+  }
+  
+  // ...
+  
+  function updateOrderStatus(orderId) {
+    // Call your backend API to update the payment status
+    return fetch(`/api/orders/${orderId}/pay`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(/* Payment details if needed */),
+    });
+  }
+  
 async function onApproveTest(){
     await payOrder({orderId,details:{payer:{}}});
     refetch(); //once paid refetch unpaid to paid
