@@ -79,6 +79,7 @@ const OrderScreen = () => {
     await payOrder({ orderId, details: { payer: {} } });
     refetch();
 
+
     toast.success('Order is paid');
   }
 
@@ -145,7 +146,9 @@ const OrderScreen = () => {
                 <strong>Method: </strong>
                 {order.paymentMethod}
               </p>
+              {console.log(order.isPaid)}
               {order.isPaid ? (
+                
                 <Message variant='success'>Paid on {order.paidAt}</Message>
                 
               ) : (
@@ -155,7 +158,7 @@ const OrderScreen = () => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {order.orderItems.length === 0 ? (
+                           {order.orderItems.length === 0 ? (
                 <Message>Order is empty</Message>
               ) : (
                 <ListGroup variant='flush'>

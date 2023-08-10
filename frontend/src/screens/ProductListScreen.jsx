@@ -14,18 +14,11 @@ const[createProduct,{isLoading:loadingCreate}]=useCreateProductMutation()
     console.log('delete',id)
   }
   const createProductHandler=async ()=>{
+    
     if(window.confirm('Are you Sure to create a product ?')){
+        console.log("Creating product...");
         try{
-            await createProduct({
-                name: "Sample Name",
-                price: 0,
-                category: "Sample Category",
-                brand: "Sample Brand",
-                countInStock: 0,
-                numReviews: 0,
-                description: "Sample Description",
-                // Other properties as needed
-              });
+            await createProduct()
                 refetch();
         }
         catch(err){
@@ -76,11 +69,12 @@ const[createProduct,{isLoading:loadingCreate}]=useCreateProductMutation()
                 <td>{product.category}</td>
                 <td>{product.brand}</td>
                 <td>
-                  <LinkContainer to={`/admin/products/${product._id}/edit`}>
+                <LinkContainer to={`/admin/product/${product._id}/edit`}>
                    <Button variant='light' className='btn-sm mx-2'>
-                    <FaEdit/>
-                   </Button>
-                   </LinkContainer>
+                     <FaEdit/>
+                 </Button>
+              </LinkContainer>
+
                   
                   
                   
