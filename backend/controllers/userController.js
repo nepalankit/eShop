@@ -149,13 +149,13 @@ const deleteUser = asyncHandler(async (req, res) => {
 const updateUser = asyncHandler(async (req, res) => {
   const user = await User.findById(req.params.id);
   if (user) {
-    user.name = user.body.name || user.name; //if there is no body then use the same name
-    user.email = user.body.email || user.email;
-    user.isAdmin = Boolean(user.body.isAdmin || user.isAdmin);
+    user.name = req.body.name || user.name; //if there is no body then use the same name
+    user.email = req.body.email || user.email;
+    user.isAdmin = Boolean(req.body.isAdmin || user.isAdmin);
 
     const updatedUser = await user.save();
-    res.json({
-      _id: updateUser._id,
+    res.status(200).json({
+      _id: updatedUser._id,
       name: updatedUser.name,
       email: updatedUser.email,
       isAdmin: updatedUser.isAdmin,
