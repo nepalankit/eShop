@@ -26,17 +26,36 @@ const getProductById = asyncHandler(async (req, res) => {
 // @desc  create a products
 //@route post /api/products
 //@acess admin private
+// const createProduct = asyncHandler(async (req, res) => {
+//   const product = new Product({
+//     name: "sample name",
+//     price: 0,
+//     user: req.user._id,
+//     category: "sample category",
+//     countInStock: 0,
+//     numReviews: 0,
+//     description: "Sample description",
+//   });
+//   const createdProduct = await product.save();
+//   res.status(201).json(createdProduct);
+// });
+
+// @desc    Create a product
+// @route   POST /api/products
+// @access  Private/Admin
 const createProduct = asyncHandler(async (req, res) => {
   const product = new Product({
-    name: req.body.name,
-    price: req.body.price,
+    name: "Sample name",
+    price: 0,
     user: req.user._id,
-    image: req.body.image,
-    category: req.body.category,
-    countInStock: req.body.countInStock,
-    numReviews: req.body.numReviews,
-    description: req.body.description,
+    image: "/images/sample.jpg",
+    brand: "Sample brand",
+    category: "Sample category",
+    countInStock: 0,
+    numReviews: 0,
+    description: "Sample description",
   });
+
   const createdProduct = await product.save();
   res.status(201).json(createdProduct);
 });
