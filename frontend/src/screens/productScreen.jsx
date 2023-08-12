@@ -17,6 +17,9 @@ import { useGetProductDetailsQuery,useCreateReviewMutation } from "../slices/pro
 import Message from "../components/Message";
 import { addToCart } from "../slices/cartSlice";
 import { toast } from "react-toastify";
+
+import Meta from "../components/Meta";
+
 const ProductScreen = () => {
 
   
@@ -73,6 +76,7 @@ const ProductScreen = () => {
             </Message>
      ):(
       <>
+      <Meta title={product.name} />
         <Row>
         <Col md={6}>
           <Image src={product.image} alt={product.name} fluid />

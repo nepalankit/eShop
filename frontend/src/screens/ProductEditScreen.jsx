@@ -133,7 +133,7 @@ const ProductEditScreen = () => {
             onChange={uploadfileHandler}></Form.Control>
           </Form.Group>
 
-
+            {loadingUpload && <Loader />}
 
 
 

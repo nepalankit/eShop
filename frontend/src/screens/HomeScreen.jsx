@@ -5,13 +5,21 @@ import { useGetProductsQuery } from '../slices/productsApiSlice'
 import Product from '../components/Product';
 import Message from '../components/Message';
 import { useParams } from 'react-router-dom';
-import Paginate from '../components/Paginate';
+import Paginate from '../components/Paginate'
+import { Link } from 'react-router-dom';
+import ProductCarousal from '../components/ProductCarousal';
+
 
 const HomeScreen = () => {
 const {pageNumber,keyword}=useParams()
 const{data,isLoading,error}=useGetProductsQuery({keyword,pageNumber});
     return (
         <>
+        {!keyword ? (<ProductCarousal/> 
+        )
+         : ( <Link to='/' className='btn btn-dark mb-4'>Go Back 
+         </Link>
+         )}
         {isLoading ?(
          <Loader />
         ): error ?(
@@ -22,6 +30,7 @@ const{data,isLoading,error}=useGetProductsQuery({keyword,pageNumber});
           </div>
         ):(
           <>
+          
           <h1> Latest Products</h1>
          
           <Row>
