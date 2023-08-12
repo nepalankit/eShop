@@ -16,7 +16,7 @@ import {
     
 }from "../slices/orderApiSlice"
 
-
+ 
 const OrderScreen = () => {
   const { id: orderId } = useParams();
 
@@ -102,8 +102,17 @@ const OrderScreen = () => {
   }
 
   const deliverHandler = async () => {
-    await deliverOrder(orderId);
-    refetch();
+    
+    try{
+        await deliverOrder(orderId);
+        refetch()
+        toast.success("Ordered Delivered")
+    }
+    catch(err)
+    {
+      toast.error(err?.data?.message || err.message)
+    }
+  
   };
 
   return isLoading ? (

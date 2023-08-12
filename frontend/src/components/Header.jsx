@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
  import { useLogoutMutation } from '../slices/usersApiSlice';
  import { logout } from '../slices/authSlice';
  import SearchBox from './SearchBox';
-// import logo from '../assets/logo.png';
+// import eShop from '../assets/eShop.png'
 // import { resetCart } from '../slices/cartSlice';
 
 const Header = () => {
@@ -33,11 +33,11 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='primary' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar className="bg-body-tertiary mb-3" expand='lg' collapseOnSelect>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>
-             
+             {/* <img src={eShop} /> */}
               eShop
             </Navbar.Brand>
           </LinkContainer>

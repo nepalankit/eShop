@@ -10,7 +10,7 @@ import { useGetOrdersQuery } from '../slices/orderApiSlice'
 
 const OrderListScreen = () => {
     const{data:orders,isLoading,error}=useGetOrdersQuery();
-
+   
   return (
     <>
       <h1>Orders</h1>
@@ -23,13 +23,15 @@ const OrderListScreen = () => {
         <th>ID</th>
         <th>USER</th> 
         <th>DATE</th>
+        <th>Total Price</th>
         <th>PAID</th>
         <th>DELIVERED</th>
         <th> </th>
     </tr>
 </thead>
 <tbody>
-    {orders.map((order)=>{
+    {orders.map((order)=>(
+
         <tr key={order._id}>
             <td>{order._id}</td>
             <td>{order.user && order.user.name}</td>
@@ -46,7 +48,7 @@ const OrderListScreen = () => {
             <td>
 
             {order.isDelivered?(
-                order.isDelivered.substring(0,10)
+                order.deliveredAt.substring(0,10)
                 ):(
                    <FaTimes style={{color:'red'}} />  
                 )}
@@ -58,7 +60,7 @@ const OrderListScreen = () => {
                
                 </td>
         </tr>
-    })}
+    ))}
 </tbody>
         </Table>
       )

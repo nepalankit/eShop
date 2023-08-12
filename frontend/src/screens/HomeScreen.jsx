@@ -35,8 +35,8 @@ const{data,isLoading,error}=useGetProductsQuery({keyword,pageNumber});
          
           <Row>
             {data.products.map((product) => (
-              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-              <Product product={product}/>
+              <Col key={product._id} sm={12} md={6} lg={4} xl={3} className="mt-5">
+              <Product className='mb-2 ' product={product}/>
               </Col>
             ))}
           </Row> 
